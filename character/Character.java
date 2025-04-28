@@ -23,8 +23,12 @@ public class Character {
         return this.hp;
     }
 
-    public int setHp(hp) {
-        return this.hp;
+    public void setHp(int hp) {
+        this.hp = hp;
+    }
+
+    public void resetHP() {
+        this.hp = 100;
     }
 
     public void attacked() {
@@ -32,7 +36,7 @@ public class Character {
     }
 
     public void minumRamuan() {
-        this.hp += 1;
+        this.hp += 50;
     }
 
     public void levelUp() {
