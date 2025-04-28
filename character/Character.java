@@ -1,7 +1,9 @@
+package character;
+
 public class Character {
-    String nama;
+    public String nama;
     int level = 1;
-    int hp = 10;
+    protected int hp = 100;
     int exp = 0;
 
     public void setData(String nama) {
@@ -18,6 +20,10 @@ public class Character {
     }
 
     public int getHp() {
+        return this.hp;
+    }
+
+    public int setHp(hp) {
         return this.hp;
     }
 
