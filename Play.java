@@ -20,6 +20,7 @@ public class Play {
         int pil;
         String pil2 = "y";
         int potionCount = 3;
+        player1.setHp(100);
         enemy.setHp(150);
         player1.setData("Character");
         enemy.setData("Enemy");
@@ -62,6 +63,12 @@ public class Play {
                         player1.setHp(0);
                         break;
                     }
+                    enemy.attacked(angka, player1.nama);
+                    if (enemy.getHp() < 0) {
+                        enemy.setHp(0);
+                        break;
+                    }
+
                     break;
 
                 case 3: // Minum Ramuan
@@ -90,7 +97,7 @@ public class Play {
                 pil2 = scanner.nextLine();
                 if (pil2.equals("y")) {
                     player1.resetHP();
-                    enemy.setHp(150);
+                    enemy.resetHP();
                     potionCount = 3;
                 }
             }
@@ -101,7 +108,7 @@ public class Play {
                 pil2 = scanner.nextLine();
                 if (pil2.equals("y")) {
                     player1.resetHP();
-                    enemy.setHp(150);
+                    enemy.resetHP();
                     potionCount = 3;
                 }
             }

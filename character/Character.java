@@ -2,7 +2,7 @@ package character;
 
 public class Character {
     public String nama;
-    protected int hp = 100;
+    protected int hp;
 
     public void setData(String nama) {
         this.nama = nama;
@@ -14,7 +14,6 @@ public class Character {
 
     public void attack(int rand) {
         System.out.println(this.nama + " menyerang Enemy! Damage: " + rand);
-
     }
 
     public int getHp() {
