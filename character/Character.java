@@ -2,9 +2,7 @@ package character;
 
 public class Character {
     public String nama;
-    int level = 1;
     protected int hp = 100;
-    int exp = 0;
 
     public void setData(String nama) {
         this.nama = nama;
@@ -14,9 +12,9 @@ public class Character {
         return this.nama;
     }
 
-    public void attack() {
-        System.out.println(this.nama + " menyerang lawan");
-        expUp();
+    public void attack(int rand) {
+        System.out.println(this.nama + " menyerang Enemy! Damage: " + rand);
+
     }
 
     public int getHp() {
@@ -31,27 +29,17 @@ public class Character {
         this.hp = 100;
     }
 
-    public void attacked() {
-        this.hp -= 1;
+    public void attacked(int rand) {
+        this.hp -= rand;
     }
 
-    public void minumRamuan() {
+    public void minumRamuan(int potionCount) {
         this.hp += 50;
+        System.out.println("Kamu minum ramuan dan memulihkan " + 50 + " HP. Sisa ramuan: " + potionCount);
     }
 
-    public void levelUp() {
-        this.level += 1;
-    }
-
-    public void expUp() {
-        this.exp += 1;
-    }
-
-    public int getLevel() {
-        return this.level;
-    }
-
-    public int getExp() {
-        return this.exp;
+    public void defense() {
+        this.hp -= 15;
+        System.out.println("Kamu bertahan. Damage musuh berkurang menjadi " + 15 + ".");
     }
 }

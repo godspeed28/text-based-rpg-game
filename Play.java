@@ -1,5 +1,7 @@
 import character.Character;
 import enemy.Enemy;
+
+import java.util.Random;
 import java.util.Scanner;
 
 public class Play {
@@ -9,21 +11,23 @@ public class Play {
                 "1. Serang\n" + "2. Bertahan\n" + "3. Minum Ramuan (sisa: " + potionCount + ")\n" + "4. Keluar\n");
     }
 
-    public static void newGame() {
-
-    }
-
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        int pil;
-        String pil2 = "y";
-        int potionCount = 3; // jumlah ramuan
         Character player1 = new Character();
         Enemy enemy = new Enemy();
+        Scanner scanner = new Scanner(System.in);
+        Random rand = new Random();
+
+        int pil;
+        String pil2 = "y";
+        int potionCount = 3;
         enemy.setHp(150);
+        player1.setData("Character");
+        enemy.setData("Enemy");
 
         System.err.println("Selamat datang di Text RPG!");
         do {
+            int angka = rand.nextInt(100);
+            int angkaEnemy = rand.nextInt(100);
 
             System.out.println("HP Character: " + player1.getHp() + " | HP Enemy: " + enemy.getHp());
             display(potionCount);
@@ -33,43 +37,37 @@ public class Play {
             scanner.nextLine();
 
             switch (pil) {
+
                 case 1: // Serang
-                    int damageToEnemy = 20; // contoh damage ke musuh
-                    int damageToPlayer = 15; // contoh damage balasan
-                    enemy.setHp(enemy.getHp() - damageToEnemy);
+                    enemy.attacked(angka);
+                    player1.attack(angka);
                     if (enemy.getHp() < 0) {
                         enemy.setHp(0);
                         break;
                     }
-                    System.out.println("Kamu menyerang musuh dan memberikan " + damageToEnemy + " damage!");
 
                     if (enemy.getHp() > 0) {
-                        player1.setHp(player1.getHp() - damageToPlayer);
+                        player1.attacked(angkaEnemy);
+                        enemy.attack(angkaEnemy);
                         if (player1.getHp() < 0) {
                             player1.setHp(0);
                             break;
                         }
-                        System.out.println("Musuh membalas serangan! Kamu terkena " + damageToPlayer + " damage.");
                     }
                     break;
 
                 case 2: // Bertahan
-                    int reducedDamage = 5; // damage berkurang karena bertahan
-                    player1.setHp(player1.getHp() - reducedDamage);
+                    player1.defense();
                     if (player1.getHp() < 0) {
                         player1.setHp(0);
                         break;
                     }
-                    System.out.println("Kamu bertahan. Damage musuh berkurang menjadi " + reducedDamage + ".");
                     break;
 
                 case 3: // Minum Ramuan
                     if (potionCount > 0) {
-                        // HP yang dipulihkan
-                        player1.minumRamuan();
-                        potionCount--;
-                        System.out.println(
-                                "Kamu minum ramuan dan memulihkan " + 50 + " HP. Sisa ramuan: " + potionCount);
+                        --potionCount;
+                        player1.minumRamuan(potionCount);
                     } else {
                         System.out.println("Ramuan habis!");
                     }
@@ -86,7 +84,8 @@ public class Play {
 
             // Cek kondisi menang atau kalah
             if (player1.getHp() <= 0) {
-                System.out.println("\nKamu kalah! HP kamu habis.");
+                System.out.println("\nKamu kalah! HP kamu habis.\n" + "HP Character: " + player1.getHp()
+                        + " | HP Enemy: " + enemy.getHp());
                 System.out.print("Lanjut bermain? (y/n): ");
                 pil2 = scanner.nextLine();
                 if (pil2.equals("y")) {
@@ -96,7 +95,8 @@ public class Play {
                 }
             }
             if (enemy.getHp() <= 0) {
-                System.out.println("\nSelamat! Kamu mengalahkan musuh!");
+                System.out.println("\nSelamat! Kamu mengalahkan musuh!\n" + "HP Character: " + player1.getHp()
+                        + " | HP Enemy: " + enemy.getHp());
                 System.out.print("Lanjut bermain? (y/n): ");
                 pil2 = scanner.nextLine();
                 if (pil2.equals("y")) {
@@ -107,6 +107,8 @@ public class Play {
             }
 
         } while (pil != 4 && !pil2.equalsIgnoreCase("n"));
+
+        scanner.close();
 
         System.err.print("Terima kasih sudah bermain.");
     }
