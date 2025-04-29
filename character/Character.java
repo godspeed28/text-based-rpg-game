@@ -12,8 +12,8 @@ public class Character {
         return this.nama;
     }
 
-    public void attack(int rand) {
-        System.out.println(this.nama + " menyerang Enemy! Damage: " + rand);
+    public void attack(int rand, String nama) {
+        System.out.println(this.nama + " menyerang " + nama + "! Damage: " + rand);
     }
 
     public int getHp() {
@@ -32,13 +32,13 @@ public class Character {
         this.hp -= rand;
     }
 
-    public void minumRamuan(int potionCount) {
+    public void minumRamuan() {
         this.hp += 50;
-        System.out.println("Kamu minum ramuan dan memulihkan " + 50 + " HP. Sisa ramuan: " + potionCount);
+        System.out.println("Kamu minum ramuan dan memulihkan " + 50 + " HP.");
     }
 
-    public void defense() {
-        this.hp -= 15;
-        System.out.println("Kamu bertahan. Damage musuh berkurang menjadi " + 15 + ".");
+    public void defense(int reduce) {
+        this.hp -= reduce;
+        System.out.println("Kamu bertahan. Damage Enemy berkurang menjadi " + reduce + ".");
     }
 }

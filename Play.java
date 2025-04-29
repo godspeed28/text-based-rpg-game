@@ -20,17 +20,21 @@ public class Play {
         int pil;
         String pil2 = "y";
         int potionCount = 3;
+
         player1.setHp(100);
         enemy.setHp(150);
-        player1.setData("Character");
+        player1.setData("Gandalf");
         enemy.setData("Enemy");
 
         System.err.println("Selamat datang di Text RPG!");
         do {
             int angka = rand.nextInt(100);
             int angkaEnemy = rand.nextInt(100);
+            int reduce = rand.nextInt(30);
+            int reduceAttack = rand.nextInt(20);
 
-            System.out.println("HP Character: " + player1.getHp() + " | HP Enemy: " + enemy.getHp());
+            System.out.println("HP " + player1.getNama() + ": " + player1.getHp() + " | HP " + enemy.getNama() + ": "
+                    + enemy.getHp());
             display(potionCount);
 
             System.out.print("> ");
@@ -41,7 +45,7 @@ public class Play {
 
                 case 1: // Serang
                     enemy.attacked(angka);
-                    player1.attack(angka);
+                    player1.attack(angka, enemy.getNama());
                     if (enemy.getHp() < 0) {
                         enemy.setHp(0);
                         break;
@@ -49,7 +53,7 @@ public class Play {
 
                     if (enemy.getHp() > 0) {
                         player1.attacked(angkaEnemy);
-                        enemy.attack(angkaEnemy);
+                        enemy.attack(angkaEnemy, player1.getNama());
                         if (player1.getHp() < 0) {
                             player1.setHp(0);
                             break;
@@ -58,12 +62,12 @@ public class Play {
                     break;
 
                 case 2: // Bertahan
-                    player1.defense();
+                    player1.defense(reduce);
                     if (player1.getHp() < 0) {
                         player1.setHp(0);
                         break;
                     }
-                    enemy.attacked(angka, player1.nama);
+                    enemy.attacked(reduceAttack, player1.nama);
                     if (enemy.getHp() < 0) {
                         enemy.setHp(0);
                         break;
@@ -74,7 +78,7 @@ public class Play {
                 case 3: // Minum Ramuan
                     if (potionCount > 0) {
                         --potionCount;
-                        player1.minumRamuan(potionCount);
+                        player1.minumRamuan();
                     } else {
                         System.out.println("Ramuan habis!");
                     }
