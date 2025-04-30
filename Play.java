@@ -28,10 +28,10 @@ public class Play {
 
         System.err.println("Selamat datang di Text RPG!");
         do {
-            int angka = rand.nextInt(100);
-            int angkaEnemy = rand.nextInt(100);
-            int reduce = rand.nextInt(30);
-            int reduceAttack = rand.nextInt(20);
+            int angka = rand.nextInt(100) + 1;
+            int angkaEnemy = rand.nextInt(100) + 1;
+            int reduce = rand.nextInt(30) + 1;
+            int reduceAttack = rand.nextInt(20) + 1;
 
             System.out.println("HP " + player1.getNama() + ": " + player1.getHp() + " | HP " + enemy.getNama() + ": "
                     + enemy.getHp());
