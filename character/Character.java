@@ -32,6 +32,11 @@ public class Character {
         this.hp -= rand;
     }
 
+    public void attacked(int rand, String attackerName) {
+        this.hp -= rand;
+        System.out.println("Enemy diserang oleh " + attackerName + " dan kehilangan " + rand + " HP!");
+    }
+
     public void minumRamuan() {
         this.hp += 50;
         System.out.println("Kamu minum ramuan dan memulihkan " + 50 + " HP.");
