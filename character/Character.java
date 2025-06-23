@@ -1,8 +1,35 @@
 package character;
 
-public class Character {
-    public String nama;
+import java.util.Random;
+
+public abstract class Character {
+    protected String nama;
     protected int hp;
+    protected int level;
+    protected int xp;
+
+    public Character() {
+        this.level = 1;
+        this.xp = 0;
+        this.hp = 100;
+    }
+
+    public void addXp(int amount) {
+        this.xp += amount;
+    }
+
+    public void calculateLevel() {
+        int[] thresholds = { 0, 100, 300, 600, 1000 };
+
+        for (int i = 1; i < thresholds.length; i++) {
+            if (this.xp >= thresholds[i]) {
+                this.level = i + 1;
+                this.hp += 100;
+            } else {
+                break;
+            }
+        }
+    }
 
     public void setData(String nama) {
         this.nama = nama;
@@ -10,10 +37,6 @@ public class Character {
 
     public String getNama() {
         return this.nama;
-    }
-
-    public void attack(int rand, String nama) {
-        System.out.println(this.nama + " menyerang " + nama + "! Damage: " + rand);
     }
 
     public int getHp() {
@@ -24,10 +47,27 @@ public class Character {
         this.hp = hp;
     }
 
+    public int getLevel() {
+        return this.level;
+    }
+
+    public int getXp() {
+        return this.xp;
+    }
+
     public void resetHP() {
         this.hp = 100;
     }
 
+    public void resetXp() {
+        this.xp = 0;
+    }
+
+    public void resetLevel() {
+        this.level = 1;
+    }
+
+    // OVERLOADING
     public void attacked(int rand) {
         this.hp -= rand;
     }
@@ -37,13 +77,7 @@ public class Character {
         System.out.println("Enemy diserang oleh " + attackerName + " dan kehilangan " + rand + " HP!");
     }
 
-    public void minumRamuan() {
-        this.hp += 50;
-        System.out.println("Kamu minum ramuan dan memulihkan " + 50 + " HP.");
-    }
-
-    public void defense(int reduce) {
-        this.hp -= reduce;
-        System.out.println("Kamu bertahan. Damage Enemy berkurang menjadi " + reduce + ".");
+    public void attack(int rand, String targetNama) {
+        System.out.println(this.nama + " menyerang " + targetNama + "! Damage: " + rand);
     }
 }

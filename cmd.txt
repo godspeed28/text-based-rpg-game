@@ -1,0 +1,4 @@
+chcp 65001
+set JAVA_TOOL_OPTIONS=-Dfile.encoding=UTF-8
+
+javac -encoding UTF-8 map/BattleField.java
