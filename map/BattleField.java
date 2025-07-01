@@ -9,7 +9,7 @@ import java.util.Random;
 
 public class BattleField implements BattleFieldInterface {
     private static final int SIZE = 5;
-    private static final int ENEMY_COUNT = 1;
+    private static final int ENEMY_COUNT = 5;
     private static final String[] ZONE_SYMBOLS = { "🔥", "💧", "⚡", "🌀", "🪵 " };
     private static final String PLAYER_SYMBOL = "[  P ]";
     private static final String[] ENEMY_SYMBOLS = { "[ E1 ]", "[ E2 ]", "[ E3 ]", "[ E4 ]", "[ E5 ]" };

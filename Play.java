@@ -19,8 +19,11 @@ public class Play {
         Scanner scanner = new Scanner(System.in);
         Random rand = new Random();
 
-        Player player = new Player("Albert", 100);
-        Enemy[] enemies = new Enemy[1];
+        System.out.print("Masukan nama anda : ");
+        String name = scanner.nextLine();
+
+        Player player = new Player(name, 100);
+        Enemy[] enemies = new Enemy[5];
         for (int i = 0; i < enemies.length; i++) {
             enemies[i] = new Enemy("Enemy" + (i + 1), 150);
         }
