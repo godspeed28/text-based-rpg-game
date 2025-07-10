@@ -13,7 +13,7 @@ public interface BattleFieldInterface {
 
     void applyZoneEffects();
 
-    boolean isBattleTriggered();
+    // boolean isBattleTriggered();
 
     void reset();
 }

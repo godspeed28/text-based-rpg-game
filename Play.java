@@ -38,7 +38,7 @@ public class Play {
             int stopMessage = 1;
             boolean gameOver = false;
 
-            System.out.println("🎮 Selamat datang di Text RPG Arena!");
+            System.out.println("🎮 Selamat datang " + name + " di Text RPG Arena!");
             System.out.println("Bergeraklah sampai kamu bertemu musuh...");
 
             while (!gameOver) {

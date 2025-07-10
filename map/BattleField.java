@@ -8,7 +8,7 @@ import character.Character;
 import java.util.Random;
 
 public class BattleField implements BattleFieldInterface {
-    private static final int SIZE = 5;
+    private static final int SIZE = 5; // ukuran peta 5*5
     private static final int ENEMY_COUNT = 5;
     private static final String[] ZONE_SYMBOLS = { "🔥", "💧", "⚡", "🌀", "🪵 " };
     private static final String PLAYER_SYMBOL = "[  P ]";
@@ -186,9 +186,7 @@ public class BattleField implements BattleFieldInterface {
                 }
                 boolean isEnemy = (enemyIndex != -1);
 
-                if (isPlayer && isEnemy && isBoss) {
-                    System.out.print("[!!!]");
-                } else if ((isPlayer && isEnemy) || (isPlayer && isBoss) || (isEnemy && isBoss)) {
+                if ((isPlayer && isEnemy) || (isPlayer && isBoss)) {
                     System.out.print(COLLISION_SYMBOL);
                 } else if (isPlayer) {
                     System.out.print(PLAYER_SYMBOL);
@@ -203,6 +201,7 @@ public class BattleField implements BattleFieldInterface {
             }
             System.out.println();
         }
+
     }
 
     public String getCurrentZone(Character character) {
